@@ -58,12 +58,16 @@
 
       $('#hero_input').on('input', () => {
         $('#hero_header').text($('#hero_input').val())
+        hero_text = $('#hero_input').val()
         hero_char = 0
+        console.log("on")
       })
       
       $('#hero_reset').click(() => {
-        $('#hero_input').val(hero_text)
+        hero_text = "AIDA DAD MOM CARTER MOE DELTA GRANDMA SCOUT MAMMY TAMMY"
         hero_char = 0
+        $('#hero_header').text('__')
+        $('#hero_input').val(hero_text)
       })
 
     </script>
