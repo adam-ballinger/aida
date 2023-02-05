@@ -10,7 +10,7 @@
     <link rel="manifest" href="site.webmanifest">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <meta property="og:image" content="favicon-32x32.png">
+    <meta property="og:image" content="">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1024">
     <meta property="og:image:height" content="1024">
@@ -26,7 +26,7 @@
       </header>
 
       <main>
-        <p id="points" class="text-end display-6 fw-bold">🪙0</p>
+        <p id="score" class="text-end display-6 fw-bold">🪙0</p>
         <p id="hero_message" class="text-center display-4 fw-bold">Spell words to get points</p>
         <div class="mt-5">
           <div class="row mb-3 text-center">
@@ -57,66 +57,14 @@
             </div>
           </div>
         </div>
-        <div id="message" class="mt-5">
-          <p>Little message.</p>
-        </div>
+        <div id="message" class="mt-5"></div>
         
 
       </main>
 
       <footer class="pt-5 my-5 text-muted border-top">Created by Aida and Adam · © 2023</footer>
 
-    <script>
-
-      var word = ""
-      let history = ['ADAM']
-
-      function button_click(button_id){
-        
-        var letter = $("#" + button_id + " p").text()
-        console.log("Cliked " + button_id + ", got letter " + letter)
-        word = word + letter
-        console.log("Updated word: " + word)
-        $('#hero_message').text(word)
-        if(check_history(word)) {
-          $('#message').html("<p>You've already found that one.</p>")
-        } else {
-          check_dictionary(word)
-        }
-        $('#clear').removeAttr("disabled")
-      }
-
-      function check_history(word) {
-        for(let i = 0; i < history.length; i++) {
-          if(word == history[i]) {
-            return true
-          }
-        }
-        return false
-      }
-
-      function check_dictionary(word) {
-        $.ajax({
-          url: 'https://api.dictionaryapi.dev/api/v2/entries/en/' + word,
-          type: 'get',
-          error: () => {
-            console.log('Dictionary fail')
-          },
-          success: () => {
-            console.log('Dictionary success')
-          }
-          }
-        )
-      }
-
-      $('#clear').click(() => {
-        word = ""
-        console.log("Updated word: " + word)
-        $('#hero_message').text("🤪")
-        $("#clear").attr("disabled", true)
-      })
-
-    </script>
+    <script src="script.js"></script>
    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
   </body>
