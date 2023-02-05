@@ -3,71 +3,117 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Aida Marie Heller Ballinger</title>
+    <title>Aida's Website</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <meta property="og:image" content="https://www.hartz.com/wp-content/uploads/2022/01/newborn-puppies-bathroom-1.jpg">
+    <meta property="og:image" content="favicon-32x32.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1024">
     <meta property="og:image:height" content="1024">
   </head>
-  <body>
-    <div class="container py-4">
-      <div class="container py-4">
-        <header class="pb-3 mb-4 border-bottom">
-          <h1>AIDA🦄</h1>
-        </header>
-        <div class="px-4 py-5 my-5 text-center">
-          <h1 id="hero_header" class="display-5 fw-bold">__</h1>
-          <div class="col-lg-6 mx-auto my-5">
-            <div class="d-gird gap-2 d-sm-flex justify-content-sm-center">
-              <button id="hero_button" type="button" class="btn btn-primary btn-lg px-4 gap-3">Hero Button</button>
-            </div>
-          </div>
-        </div>
-        <div class="px-4 py-5 my-5 text-center">
-          <input typ="text" class="form-control" id="hero_input">
-          <div class="col-lg-6 mx-auto my-5">
-            <div class="d-gird gap-2 d-sm-flex justify-content-sm-center">
-              <button id="hero_reset" type="button" class="btn btn-outline-secondary btn-lg px-4 gap-3">Hero Reset</button>
-            </div>
-          </div>
-        </div>
-        </div>
-      </div>
-    </div>
 
+  <body>
+    <div class="col-lg-8 mx-auto p-4 py-md-5">
+      <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+        <a class="text-decoration-none link-dark d-flex align-items-center" href="index.html">
+          <h1>🦄AIDA'S WEBSITE</h1>
+        </a>
+        
+      </header>
+
+      <main>
+        <p id="points" class="text-end display-6 fw-bold">🪙0</p>
+        <p id="hero_message" class="text-center display-4 fw-bold">Spell words to get points</p>
+        <div class="mt-5">
+          <div class="row mb-3 text-center">
+            <div class="col-4 themed-grid-col text-center">
+              <button id="button_1" onclick="button_click(this.id)" class="btn w-100 h-100 rounded-4 shadow-lg"><p class="display-1 fw-bold">A</p></button>
+            </div>
+            <div class="col-4 themed-grid-col">
+              <button id="button_2" onclick="button_click(this.id)" class="btn w-100 h-100 rounded-4 shadow-lg"><p class="display-1 fw-bold">D</p></button>
+            </div>
+            <div class="col-4 themed-grid-col">
+              <button id="button_3" onclick="button_click(this.id)" class="btn w-100 h-100 rounded-4 shadow-lg"><p class="display-1 fw-bold">M</p></button>
+            </div>
+          </div>
+          <div class="row mb-3 text-center">
+            <div class="col-4 themed-grid-col">
+              <button id="button_4" onclick="button_click(this.id)" class="btn w-100 h-100 rounded-4 shadow-lg"><p class="display-1 fw-bold">E</p></button>
+            </div>
+            <div class="col-4 themed-grid-col">
+              <button id="button_5" onclick="button_click(this.id)" class="btn w-100 h-100 rounded-4 shadow-lg"><p class="display-1 fw-bold">I</p></button>
+            </div>
+            <div class="col-4 themed-grid-col">
+              <button id="button_6" onclick="button_click(this.id)" class="btn w-100 h-100 rounded-4 shadow-lg"><p class="display-1 fw-bold">O</p></button>
+            </div>
+          </div>
+          <div class="row mb-3 mt-4 text-center">
+            <div class="col-12 themed-grid-col">
+              <button id="clear" class="btn btn-primary" disabled>Clear</button>
+            </div>
+          </div>
+        </div>
+        <div id="message" class="mt-5">
+          <p>Little message.</p>
+        </div>
+        
+
+      </main>
+
+      <footer class="pt-5 my-5 text-muted border-top">Created by Aida and Adam · © 2023</footer>
 
     <script>
 
-      var hero_text = "AIDA DAD MOM CARTER MOE DELTA GRANDMA SCOUT MAMMY TAMMY"
-      var hero_char = 0
+      var word = ""
+      let history = ['ADAM']
 
-      $( document ).ready(() => {
-        $('#hero_input').val(hero_text)
-      })
-
-      $('#hero_button').click(() => {
-        $('#hero_header').text(hero_text[hero_char])
-        if(hero_char < hero_text.length - 1) {
-          hero_char = hero_char + 1
+      function button_click(button_id){
+        
+        var letter = $("#" + button_id + " p").text()
+        console.log("Cliked " + button_id + ", got letter " + letter)
+        word = word + letter
+        console.log("Updated word: " + word)
+        $('#hero_message').text(word)
+        if(check_history(word)) {
+          $('#message').html("<p>You've already found that one.</p>")
         } else {
-          hero_char = 0
+          check_dictionary(word)
         }
-      })
+        $('#clear').removeAttr("disabled")
+      }
 
-      $('#hero_input').on('input', () => {
-        $('#hero_header').text($('#hero_input').val())
-        hero_text = $('#hero_input').val()
-        hero_char = 0
-        console.log("on")
-      })
-      
-      $('#hero_reset').click(() => {
-        hero_text = "AIDA DAD MOM CARTER MOE DELTA GRANDMA SCOUT MAMMY TAMMY"
-        hero_char = 0
-        $('#hero_header').text('__')
-        $('#hero_input').val(hero_text)
+      function check_history(word) {
+        for(let i = 0; i < history.length; i++) {
+          if(word == history[i]) {
+            return true
+          }
+        }
+        return false
+      }
+
+      function check_dictionary(word) {
+        $.ajax({
+          url: 'https://api.dictionaryapi.dev/api/v2/entries/en/' + word,
+          type: 'get',
+          error: () => {
+            console.log('Dictionary fail')
+          },
+          success: () => {
+            console.log('Dictionary success')
+          }
+          }
+        )
+      }
+
+      $('#clear').click(() => {
+        word = ""
+        console.log("Updated word: " + word)
+        $('#hero_message').text("🤪")
+        $("#clear").attr("disabled", true)
       })
 
     </script>
