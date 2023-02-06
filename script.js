@@ -29,7 +29,8 @@ var milestones = [
   {'score': 150, 'message': '150 points! Great work! Earn 300 points for a medal.', 'function': () => {}},
   {'score': 300, 'message': '300 points! You get the medal! 🏅', 'function': () => {
     $('#header').text("🦄AIDA'S WEBSITE🏅")
-  }}
+  }},
+  {'score': 10000}
 ]
 
 var milestone = 0
@@ -103,7 +104,6 @@ function check_special(word) {
 
 $('#clear').click(() => {
   hero_word = ''
-  console.log('Updated word: ' + hero_word)
   $('#hero_message').text("🤪")
   $("#clear").attr('disabled', true)
   $('#message').html('<p>Keep going!</p>')
